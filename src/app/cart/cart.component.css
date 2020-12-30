@@ -1,0 +1,52 @@
+
+/* page headline
+==================================== */
+
+#inner-headline{
+	background: #318FCF;
+	position:relative;
+	margin:0;
+	padding:0;
+	color:#fefefe;
+	/* margin: 15px; */
+	border-top: 10px solid #61B5EF;
+}
+
+
+#inner-headline .inner-heading h2 {
+	color:#fff;
+	margin:20px 0 0 0;
+}
+/* --- breadcrumbs --- */
+#inner-headline ul.breadcrumb {
+	margin:30px 0 0;
+	float:left;
+}
+
+#inner-headline ul.breadcrumb li {
+	margin-bottom:0;
+	padding-bottom:0;
+}
+#inner-headline ul.breadcrumb li {
+	font-size:13px;
+	color:#fff;
+}
+
+#inner-headline ul.breadcrumb li i{
+	color:#dedede;
+}
+
+#inner-headline ul.breadcrumb li a {
+	color:#fff;
+}
+
+	#inner-headline .breadcrumb {
+		float:left;
+		clear:both;
+		width:100%;
+    }
+.pageTitle{
+    color: #fff;
+    margin: 30px 0 30px;
+    display: inline-block;
+}

@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { AgmCoreModule } from '@agm/core'
+import { AgmCoreModule } from '@agm/core';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -12,9 +12,10 @@ import { LibraryComponent } from './library/library.component';
 import { ContactComponent } from './contact/contact.component';
 import { AppRoutingModule } from './app-routing.module';
 import { MymapComponent } from './mymap/mymap.component';
-import {FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CartComponent } from './cart/cart.component';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import { CartComponent } from './cart/cart.component';
     LibraryComponent,
     ContactComponent,
     MymapComponent,
-    CartComponent
+    CartComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,11 +37,12 @@ import { CartComponent } from './cart/cart.component';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    SharedModule,
     AgmCoreModule.forRoot({
-      apiKey: ''
-    })
+      apiKey: '',
+    }),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

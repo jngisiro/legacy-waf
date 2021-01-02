@@ -13,12 +13,13 @@ import { ContactComponent } from './contact/contact.component';
 import { AppRoutingModule } from './app-routing.module';
 import { MymapComponent } from './mymap/mymap.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CartComponent } from './cart/cart.component';
 import { SharedModule } from './shared/shared.module';
 import { SummarizePipe } from './summarize.pipe';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { ConfirmationComponent } from './confirmation/confirmation.component';
+import { AuthInterceptor } from './authInterceptor.service';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,9 @@ import { ConfirmationComponent } from './confirmation/confirmation.component';
       apiKey: '',
     }),
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

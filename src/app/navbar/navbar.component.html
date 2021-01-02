@@ -65,7 +65,7 @@
                 </div>
                 <input type="submit" class="btn btn-primary btn-block" value="Login">
                 <div class="form-footer">
-                  <a href="#">Forgot Your password?</a>
+                  <a routerLink="auth/forgot-password">Forgot Your password?</a>
                 </div>
               </form>
               <app-loading [message]="'Logging in...'" *ngIf="isloading"></app-loading>

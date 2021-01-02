@@ -18,6 +18,7 @@ import { CartComponent } from './cart/cart.component';
 import { SharedModule } from './shared/shared.module';
 import { SummarizePipe } from './summarize.pipe';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { ConfirmationComponent } from './confirmation/confirmation.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { CheckoutComponent } from './checkout/checkout.component';
     CartComponent,
     SummarizePipe,
     CheckoutComponent,
+    ConfirmationComponent,
   ],
   imports: [
     BrowserModule,

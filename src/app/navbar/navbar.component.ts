@@ -76,7 +76,6 @@ export class NavbarComponent implements OnInit {
 
     this.productService.cart.subscribe((cart) => {
       this.cart = cart;
-      console.log(this.cart);
     });
   }
 
@@ -122,7 +121,6 @@ export class NavbarComponent implements OnInit {
           this.isloading = false;
           this.isRegistered = true;
           this.registeredEmail = angForm2.value.email;
-          console.log(data);
           // alert("Sign Up Successfully");
           // const redirect = this.dataService.redirectUrl
           //   ? this.dataService.redirectUrl

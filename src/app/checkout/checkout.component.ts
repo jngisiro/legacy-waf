@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Order } from '../models/order';
 import { ProductService } from '../product.service';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-checkout',
@@ -9,7 +11,11 @@ import { ProductService } from '../product.service';
 export class CheckoutComponent implements OnInit {
   cart;
   total;
-  constructor(private productService: ProductService) {}
+  user;
+  constructor(
+    private productService: ProductService,
+    private userService: UserService
+  ) {}
 
   ngOnInit(): void {
     this.productService.cart.subscribe((cart) => {
@@ -22,5 +28,25 @@ export class CheckoutComponent implements OnInit {
 
       this.total = sum;
     });
+
+    this.userService.user.subscribe((user) => {
+      this.user = user;
+    });
+  }
+
+  placeOrder() {
+    const products = this.cart.map((product) => product.id);
+
+    let order: Order = {
+      user: this.user.id,
+      products: [...products],
+      orderDate: new Date(),
+      paymentMethod: 'Cash on Delivery',
+    };
+
+    this.productService.placeOrder(order).subscribe(
+      (response) => console.log('success'),
+      (error) => console.log(error)
+    );
   }
 }

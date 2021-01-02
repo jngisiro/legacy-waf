@@ -25,6 +25,7 @@ export class UserService {
       .pipe(
         tap((response) => {
           this.handleAuth(
+            response.data.user._id,
             response.data.user.email,
             response.data.user.name,
             response.data.user.role,
@@ -54,6 +55,7 @@ export class UserService {
     }
 
     const user = new User(
+      userData.id,
       userData.email,
       userData.name,
       userData.role,
@@ -67,6 +69,7 @@ export class UserService {
   }
 
   private handleAuth(
+    id: string,
     email: string,
     name: string,
     role: string,
@@ -77,7 +80,7 @@ export class UserService {
       new Date().getTime() + new Date(expiresIn).getTime()
     );
 
-    const user = new User(email, name, role, token, expirationDate);
+    const user = new User(id, email, name, role, token, expirationDate);
     this.user.next(user);
     localStorage.setItem('userData', JSON.stringify(user));
   }

@@ -26,7 +26,7 @@ export class ProductService {
   }
 
   placeOrder(order) {
-    return this.http.post(`${this.baseUrl}/orders`, {});
+    return this.http.post(`${this.baseUrl}/orders`, { ...order });
   }
 
   getOrders() {

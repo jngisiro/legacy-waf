@@ -30,5 +30,13 @@ export class ProductsComponent implements OnInit {
     );
   }
 
+  addToCart(product: Product) {
+    this.http.addToCart(product);
+  }
+
+  removeFromCart(product: Product) {
+    this.http.removeFromCard(product);
+  }
+
   getProduct(): void {}
 }

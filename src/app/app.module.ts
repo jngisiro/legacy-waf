@@ -16,6 +16,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CartComponent } from './cart/cart.component';
 import { SharedModule } from './shared/shared.module';
+import { SummarizePipe } from './summarize.pipe';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { SharedModule } from './shared/shared.module';
     ContactComponent,
     MymapComponent,
     CartComponent,
+    SummarizePipe,
   ],
   imports: [
     BrowserModule,

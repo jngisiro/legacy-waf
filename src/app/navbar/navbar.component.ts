@@ -4,6 +4,7 @@ import { first } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { User } from '../User';
 import { UserService } from '../user.service';
+import { ProductService } from '../product.service';
 
 @Component({
   selector: 'app-navbar',
@@ -28,10 +29,12 @@ export class NavbarComponent implements OnInit {
   isRegistered = false;
   registeredEmail = '';
   user;
+  cart;
 
   constructor(
     private fb: FormBuilder,
     private dataService: UserService,
+    private productService: ProductService,
     private router: Router
   ) {
     this.angForm = this.fb.group({
@@ -69,6 +72,11 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
     this.dataService.user.subscribe((user) => {
       this.user = user;
+    });
+
+    this.productService.cart.subscribe((cart) => {
+      this.cart = cart;
+      console.log(this.cart);
     });
   }
 

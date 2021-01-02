@@ -8,7 +8,7 @@
     </div>
 </section>
 
-<app-loading *ngIf="loading" [message]="'loading products...'"></app-loading>
+<app-loading *ngIf="loading" [message]="'Loading products...'"></app-loading>
 
 <div *ngIf="!loading"></div>
 	<div class="catalogue" class="row row-cols-1 row-cols-md-3 g-4">
@@ -26,7 +26,7 @@
 				  Details
 				</button>
 			  <button type="button" class="btn btn-info btn-md mr-1 mb-2 waves-effect waves-light">Buy now</button>
-			  <button type="button" class="btn btn-success btn-md mr-1 mb-2 waves-effect waves-light"><i class="fa fa-shopping-cart pr-2" style="margin-right: 10px"></i>Add to cart</button>
+			  <button (click)="addToCart(product)" type="button" class="btn btn-success btn-md mr-1 mb-2 waves-effect waves-light"><i class="fa fa-shopping-cart pr-2" style="margin-right: 10px"></i>Add to cart</button>
 
 				</div>
 			</div>

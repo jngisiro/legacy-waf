@@ -7,3 +7,24 @@
 		</div>
     </div>
 </section>
+
+<div class="container">
+	<div class="card mb-3" style="max-width: 800px;" *ngFor="let product of cart">
+		<div class="row g-0">
+			<div class="col-md-5">
+				<img [src]="'assets/img/products/'+product.coverImage || 'assets/img/placeholder.png'" alt="...">
+			</div>
+			<div class="col-md-7">
+				<div class="card-body">
+					<h5 class="card-title">{{ product.name }} | <span>{{ product.price | currency:'UGX: ' }}</span></h5>
+					<p class="card-text">{{ product.description | summarize }}</p>
+					<button (click)="removeFromCart(product)" type="button" class="btn btn-danger btn-md mr-1 mb-2 waves-effect waves-light">Remove</button>
+				</div>
+			</div>
+		</div>
+	</div>
+<hr>
+	<div class="d-grid gap-2">
+		<button class="btn btn-primary" type="button">Proceed to Checkout</button>
+	</div>
+</div>

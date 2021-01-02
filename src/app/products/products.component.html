@@ -10,7 +10,7 @@
 
 <app-loading *ngIf="loading" [message]="'loading products...'"></app-loading>
 
-<div *ngIf="!loading">
+<div *ngIf="!loading"></div>
 	<div class="row row-cols-1 row-cols-md-2 g-4">
 		<div *ngFor="let product of products" class="col">
 			<div class="card">

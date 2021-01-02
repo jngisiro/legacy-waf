@@ -17,6 +17,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CartComponent } from './cart/cart.component';
 import { SharedModule } from './shared/shared.module';
 import { SummarizePipe } from './summarize.pipe';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { SummarizePipe } from './summarize.pipe';
     MymapComponent,
     CartComponent,
     SummarizePipe,
+    CheckoutComponent,
   ],
   imports: [
     BrowserModule,

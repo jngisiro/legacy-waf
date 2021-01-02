@@ -25,11 +25,17 @@ export class ProductService {
     return this.http.get(`${this.baseUrl}/products/${id}`);
   }
 
-  placeOrder() {}
+  placeOrder(order) {
+    return this.http.post(`${this.baseUrl}/orders`, {});
+  }
 
-  getOrders() {}
+  getOrders() {
+    return this.http.get(`${this.baseUrl}/orders`, {});
+  }
 
-  cancelOrder() {}
+  cancelOrder(id: string) {
+    return this.http.patch(`${this.baseUrl}/orders`, {});
+  }
 
   addToCart(product: Product) {
     // let products: Product[];

@@ -1,0 +1,29 @@
+
+<div class="container">
+  <app-loading *ngIf="loading" [message]="'Loading Product'"></app-loading>
+  
+  <div *ngIf="!loading && product">
+    <!-- <img [src]="'assets/img/products/' + product.coverImage" class="img-fluid" [alt]="product.name">
+    <h2>{{ product.name }}</h2>
+    <hr /> -->
+    <div class="row">
+      <div class="col-sm-6">
+        <figure class="figure">
+          <img [src]="'assets/img/products/' + product.coverImage" class="img-fluid" [alt]="product.name">
+          <figcaption class="figure-caption text-end">{{ product.name }}</figcaption>
+        </figure>
+      </div>
+      <div class="col-sm-6">
+        <h2>{{ product.name }}</h2>
+        <hr>
+        <p>{{ product.description }}</p>
+        <p></p>
+        <div class="alert alert-info" role="alert">
+          {{ product.price| currency: 'UGX '  }}
+        </div>
+        
+        <button class="btn btn-primary" type="button" (click)="onProceed()">Proceed to Buy</button>
+      </div>
+    </div>
+  </div>
+</div>

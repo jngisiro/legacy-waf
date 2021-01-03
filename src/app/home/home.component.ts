@@ -55,6 +55,6 @@ export class HomeComponent implements OnInit {
 
   onOrderSack() {
     console.log('running');
-    this.router.navigate(['/product']);
+    this.router.navigate(['/product', '5febcabc51dc781394714b98']);
   }
 }

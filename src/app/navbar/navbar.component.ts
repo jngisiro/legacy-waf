@@ -29,7 +29,7 @@ export class NavbarComponent implements OnInit {
   isRegistered = false;
   registeredEmail = '';
   user;
-  cart;
+  cart = [];
 
   loginError = '';
   registrationError = '';
@@ -78,7 +78,11 @@ export class NavbarComponent implements OnInit {
     });
 
     this.productService.cart.subscribe((cart) => {
-      this.cart = cart;
+      if (cart) {
+        this.cart = cart;
+      } else {
+        cart = [];
+      }
     });
   }
 

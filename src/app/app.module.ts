@@ -20,6 +20,7 @@ import { SummarizePipe } from './summarize.pipe';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { ConfirmationComponent } from './confirmation/confirmation.component';
 import { AuthInterceptor } from './authInterceptor.service';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { AuthInterceptor } from './authInterceptor.service';
     SummarizePipe,
     CheckoutComponent,
     ConfirmationComponent,
+    ProductDetailComponent,
   ],
   imports: [
     BrowserModule,

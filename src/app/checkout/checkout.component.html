@@ -1,5 +1,5 @@
 <div class="container" id="container">
-  <div class="row">
+  <div *ngIf="!loading && !orderSubmitted" class="row">
     <div class="col-md-8 order-md-1">
       <h4>Personal Details</h4>
       <div class="row">
@@ -50,5 +50,14 @@
       <li class="list-group-item d-flex justify-content-between"><span style="font-weight: bold;">Total - {{total | currency: 'UGX '}}</span></li>
     </ul>
     </div>
+  </div>
+
+  <app-loading *ngIf="loading" [message]="'Submitting your order'"></app-loading>
+
+  <div *ngIf="orderSubmitted && !loading" class="alert alert-success" role="alert">
+    <h4 class="alert-heading">Congratulations</h4>
+    <p>Your order has been successfully submitted at Safe Water Uganda. An agent will reachout to you as soon as order order is ready for delivery</p>
+    <hr>
+    <p class="mb-0">I the meantime you can browse some of our other <a routerLink="/product"><b>Products</b></a> in stock.</p>
   </div>
 </div>

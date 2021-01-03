@@ -22,11 +22,10 @@
 					<p class="card-text">{{ product.description | summarize}}</p>
 				</div>
 				<div class="card-body">
-					<button type="button" class="btn btn-outline-primary btn-md mr-1 mb-2 waves-effect waves-light" [attr.aria-expanded]="!isCollapsed"
+					<button (click)="onDetails(product)" type="button" class="btn btn-outline-primary btn-md mr-1 mb-2 waves-effect waves-light" [attr.aria-expanded]="!isCollapsed"
 				  aria-controls="collapseExample">
 				  Details
 				</button>
-			  <button type="button" class="btn btn-info btn-md mr-1 mb-2 waves-effect waves-light">Buy now</button>
 			  <button (click)="addToCart(product)" type="button" class="btn btn-success btn-md mr-1 mb-2 waves-effect waves-light"><i class="fa fa-shopping-cart pr-2" style="margin-right: 10px"></i>Add to cart</button>
 
 				</div>

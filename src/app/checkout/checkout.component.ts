@@ -12,6 +12,10 @@ export class CheckoutComponent implements OnInit {
   cart;
   total;
   user;
+
+  loading = false;
+  orderSubmitted = false;
+
   constructor(
     private productService: ProductService,
     private userService: UserService
@@ -35,6 +39,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   placeOrder() {
+    this.loading = true;
     const products = this.cart.map((product) => product.id);
 
     let order: Order = {
@@ -45,8 +50,17 @@ export class CheckoutComponent implements OnInit {
     };
 
     this.productService.placeOrder(order).subscribe(
-      (response) => console.log('success'),
-      (error) => console.log(error)
+      (response) => {
+        console.log('success');
+        this.loading = false;
+        this.orderSubmitted = true;
+
+        this.productService.clearCart();
+      },
+      (error) => {
+        this.loading = false;
+        console.log(error);
+      }
     );
   }
 }

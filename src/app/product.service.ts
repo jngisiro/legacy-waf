@@ -22,7 +22,9 @@ export class ProductService {
   }
 
   getProduct(id: string) {
-    return this.http.get(`${this.baseUrl}/products/${id}`);
+    return this.http
+      .get(`${this.baseUrl}/products/${id}`)
+      .pipe(pluck('data', 'product'));
   }
 
   placeOrder(order) {
@@ -59,5 +61,10 @@ export class ProductService {
   getCart() {
     const products: Product[] = JSON.parse(localStorage.getItem('userCart'));
     this.cart.next(products);
+  }
+
+  clearCart() {
+    localStorage.removeItem('userCart');
+    this.cart.next([]);
   }
 }

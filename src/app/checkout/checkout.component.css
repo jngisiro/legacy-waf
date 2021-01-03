@@ -7,3 +7,8 @@ span.badge {
   color: #fff;
   padding: 5px 5px;
 }
+
+div.alert.alert-success {
+  margin-top: 100px;
+  margin-bottom: 150px;
+}

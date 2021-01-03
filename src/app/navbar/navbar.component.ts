@@ -31,6 +31,9 @@ export class NavbarComponent implements OnInit {
   user;
   cart;
 
+  loginError = '';
+  registrationError = '';
+
   constructor(
     private fb: FormBuilder,
     private dataService: UserService,
@@ -96,6 +99,7 @@ export class NavbarComponent implements OnInit {
         (error) => {
           this.isloading = false;
           // alert('User name or password is incorrect');
+          this.loginError = error.error.error;
           console.log(error);
         }
       );

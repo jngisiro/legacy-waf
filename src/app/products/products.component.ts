@@ -14,7 +14,7 @@ export class ProductsComponent implements OnInit {
   products: Product[];
   loading = false;
 
-  constructor(private http: ProductService) {}
+  constructor(private http: ProductService, private router: Router) {}
 
   ngOnInit(): void {
     this.loading = true;
@@ -39,4 +39,9 @@ export class ProductsComponent implements OnInit {
   }
 
   getProduct(): void {}
+
+  onDetails(product: Product) {
+    console.log('Navigating');
+    this.router.navigate(['product', product.id]);
+  }
 }

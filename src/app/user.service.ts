@@ -1,68 +1,92 @@
 import { Injectable, Output, EventEmitter } from '@angular/core';
 import { User } from './User';
 import { USERS } from './mock-users';
-import { Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { MessageService } from './message.service';
-import { map } from 'rxjs/operators';
+import { map, pluck, tap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
+import { UserInfo } from './models/UserInfo';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  getUsers(): Observable<User[]> {
-    return of(USERS);
+  user = new BehaviorSubject<User>(null);
+  redirectUrl = '';
 
-    this.messageService.add('fetched some users for comparing');
+  constructor(private httpClient: HttpClient) {}
+
+  public userlogin(email, password) {
+    return this.httpClient
+      .post<any>('https://waf-app.herokuapp.com/api/v1/users/login', {
+        email,
+        password,
+      })
+      .pipe(
+        tap((response) => {
+          this.handleAuth(
+            response.data.user._id,
+            response.data.user.email,
+            response.data.user.name,
+            response.data.user.role,
+            response.token,
+            response.expiresIn
+          );
+        })
+      );
   }
 
-  redirectUrl: string;
-  // baseUrl:string = "http://localhost:4200/api";
-  @Output() getLoggedInName: EventEmitter<any> = new EventEmitter();
-
-  constructor(
-    private messageService: MessageService,
-    private httpClient: HttpClient
-  ) {}
-
-  public userlogin(username, password) {
-    alert(username);
+  public userregistration(userInfo: UserInfo) {
     return this.httpClient
-      .post<any>('api/login.php', { username, password })
+      .post<any>('https://waf-app.herokuapp.com/api/v1/users/signup', {
+        ...userInfo,
+      })
       .pipe(
-        map((Users) => {
-          this.setToken(Users[0].name);
-          this.getLoggedInName.emit(true);
+        tap((Users) => {
           return Users;
         })
       );
   }
 
-  public userregistration(name, pwd) {
-    return this.httpClient
-      .post<any>('api/register.php', { name, pwd })
-      .pipe(
-        map((Users) => {
-          return Users;
-        })
-      );
-  }
-
-  //token
-  setToken(token: string) {
-    localStorage.setItem('token', token);
-  }
-  getToken() {
-    return localStorage.getItem('token');
-  }
-  deleteToken() {
-    localStorage.removeItem('token');
-  }
-  isLoggedIn() {
-    const usertoken = this.getToken();
-    if (usertoken != null) {
-      return true;
+  autoLogin() {
+    const userData = JSON.parse(localStorage.getItem('userData'));
+    if (!userData) {
+      return;
     }
-    return false;
+
+    const user = new User(
+      userData.id,
+      userData.email,
+      userData.name,
+      userData.role,
+      userData._token,
+      new Date(userData._tokenExpirationDate)
+    );
+
+    if (user.gettoken()) {
+      this.user.next(user);
+    }
+  }
+
+  private handleAuth(
+    id: string,
+    email: string,
+    name: string,
+    role: string,
+    token: string,
+    expiresIn: number
+  ) {
+    const expirationDate = new Date(
+      new Date().getTime() + new Date(expiresIn).getTime()
+    );
+
+    const user = new User(id, email, name, role, token, expirationDate);
+    this.user.next(user);
+    localStorage.setItem('userData', JSON.stringify(user));
+  }
+
+  logOut() {
+    localStorage.removeItem('userData');
+    this.user.next(null);
   }
 }

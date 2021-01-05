@@ -1,15 +1,18 @@
-import { EmailValidator } from '@angular/forms';
+export class User {
+  constructor(
+    public id: string,
+    public email: string,
+    public name: string,
+    public role: string,
+    private _token: string,
+    private _tokenExpirationDate: Date
+  ) {}
 
-export class User{
-    id: number;
-    name: string;
-    password: string;
-    email: string;
-
-    constructor(id:number,name:string,password:string,email:string){
-        this.id = id;
-        this.name = name;
-        this.password = password;
-        this.email = email;
+  gettoken() {
+    if (!this._tokenExpirationDate || new Date() > this._tokenExpirationDate) {
+      return null;
     }
+
+    return this._token;
+  }
 }

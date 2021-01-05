@@ -1,0 +1,20 @@
+#message {
+  padding: 30px;
+  margin: 70px;
+  border: 1px solid grey;
+  border-radius: 5px;
+}
+
+#message p {
+  font-size: 20px;
+}
+
+#message i {
+  font-size: 70px;
+  margin-left: 20px;
+  color: #26aff0;
+}
+
+#message h1 {
+  font-weight: bold;
+}

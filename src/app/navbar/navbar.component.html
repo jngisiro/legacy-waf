@@ -5,7 +5,7 @@
       alt="Project logo"
       src="../assets/img/mukfav.png"
     />
-    <span class="col-sm" style="padding-left: 1em;">WaF project</span>
+    <span class="col-sm" style="padding-left: 1em;">Safe Water</span>
   </a>
   
   <form class="navbar-form form-inline">
@@ -25,8 +25,8 @@
           <li class="active nav-item"><a class="nav-link" routerLink="/home">Home</a></li> 
           <li class="nav-item"><a class="nav-link" href="" routerLink="/about">About Us</a></li>
           <li class="nav-item"><a class="nav-link" href="" routerLink="/product">Products</a></li>
-          <li class="nav-item"><a class="nav-link" href="" routerLink="/soko">PoU tech</a></li>
-          <li class="nav-item"><a class="nav-link" href="" routerLink="/library">Library</a></li>
+          <!-- <li class="nav-item"><a class="nav-link" href="" routerLink="/soko">PoU tech</a></li> -->
+          <!-- <li class="nav-item"><a class="nav-link" href="" routerLink="/library">Library</a></li> -->
           <li class="nav-item"><a class="nav-link" href="" routerLink="/contact">Contact</a></li>
           <li>
             
@@ -38,7 +38,7 @@
   </div>
   
   <div ngbDropdown role="group" class="dropdown-toggle" style="margin: 10px;">
-    <a class="user ml-auto" *ngIf="logoutbtn" ngbDropdownToggle   target="_blank" rel="noopener"  title="Twitter" >
+    <a class="user ml-auto" *ngIf="user" ngbDropdownToggle   target="_blank" rel="noopener"  title="Twitter" >
       <i class="fa fa-user fa-2x" ></i>
       <p style="color: aliceblue;">{{loggedUser}}</p>
     </a>
@@ -51,50 +51,56 @@
   
   
   <div ngbDropdown>
-    <a ngbDropdownToggle type="button" *ngIf="loginbtn" class="btn  ml-auto dropdown-toggle"  style="margin: 10px;">Log In</a>
-    <ul class="dropdown-menu form-wrapper "  ngbDropdownMenu>					
+    <a ngbDropdownToggle type="button" *ngIf="!user" class="btn  ml-auto dropdown-toggle"  style="margin: 10px;">Log In</a>
+    <ul *ngIf="!user" class="dropdown-menu form-wrapper "  ngbDropdownMenu>					
         <li>
-          <form action="" method="POST" id="login-form" [formGroup]="angForm" (ngSubmit)="postsignindata(angForm)" autocomplete="off">
-            <p class="hint-text">Sign in with your social media account</p>
-              <div class="form-group social-btn clearfix">
-                  <a href="#" class="btn btn-primary pull-left"><i class="fa fa-facebook"></i> Facebook</a>
-                  <a href="#" class="btn btn-info pull-right"><i class="fa fa-twitter"></i> Twitter</a>
-                </div>
-                <div class="or-seperator"><b>or</b></div>
+          <form *ngIf="!isloading" id="login-form" [formGroup]="angForm1" (ngSubmit)="postsignindata(angForm1)" autocomplete="off">
+            <p class="hint-text">Sign in with your Email and Password</p>
+              
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Username" name="email" required="required" formControlName="email" autocomplete="off" >
+                  <input type="text" class="form-control" placeholder="Email Address" name="email" required formControlName="email" autocomplete="off" >
                 </div>
                 <div class="form-group">
-                  <input type="password" class="form-control" name="password" placeholder="Password" required="required" formControlName="password"  autocomplete="off">
+                  <input type="password" class="form-control" name="password" placeholder="Password" required formControlName="password"  autocomplete="off">
                 </div>
                 <input type="submit" class="btn btn-primary btn-block" value="Login">
                 <div class="form-footer">
-                  <a href="#">Forgot Your password?</a>
+                  <a routerLink="auth/forgot-password">Forgot Your password?</a>
                 </div>
               </form>
+              <app-loading [message]="'Logging in...'" *ngIf="isloading"></app-loading>
             </li>
     </ul>
   </div>
   <div ngbDropdown>
-    <button ngbDropdownToggle  type="button" *ngIf="loginbtn" class="btn  ml-auto get-started-btn"  style="margin: 10px;">Sign Up</button>
+    <button ngbDropdownToggle  type="button" *ngIf="!user" class="btn  ml-auto get-started-btn"  style="margin: 10px;">Sign Up</button>
     <ul class="dropdown-menu form-wrapper" ngbDropdownMenu>					
       <li>
-        <form  method="post" [formGroup]="angForm" (ngSubmit)="postdata(angForm)" >
+        <form  method="post" [formGroup]="angForm" (ngSubmit)="postdata(angForm)" *ngIf="!isloading && !isRegistered" >
           <p class="hint-text">Fill in this form to create your account!</p>
           <div class="form-group">
             <input type="text" class="form-control" name="name" placeholder="name" required="required" formControlName="name">
           </div>
           <div class="form-group">
+            <input type="email" class="form-control" name="email" placeholder="email" required="required" formControlName="email">
+          </div>
+          <div class="form-group">
             <input type="password" class="form-control" name="password" placeholder="Password" required="required" formControlName="password">
           </div>
           <div class="form-group">
-            <input type="password" class="form-control" placeholder="Confirm Password" required="required">
+            <input type="password" class="form-control" name="passwordConfirm" placeholder="Confirm Password" required="required" formControlName="passwordConfirm">
           </div>
           <div class="form-group">
             <label class="checkbox-inline"><input type="checkbox" required="required"> I accept the <a href="#">Terms &amp; Conditions</a></label>
           </div>
           <input type="submit" class="btn btn-primary btn-block" value="Sign up">
         </form>
+        <app-loading [message]="'Creating Account'" *ngIf="isloading && !isRegistered"></app-loading>
+        <div *ngIf="isRegistered">
+          <h3>Congratulations</h3>
+          <p>Your account has been successfully created. Please check your inbox at {{registeredEmail}} to confirm your account</p>
+          <p>Thank you...</p>
+        </div>
       </li>
     </ul>
   </div>
@@ -102,7 +108,7 @@
         
         <button type="button"  class="btn btn-info ml-auto" routerLink="/cart" >
           <i class="fa fa-shopping-cart fa-2x"></i>
-          <span class="badge badge-light">0</span>
+          <span class="badge badge-light">{{cart.length || 0}}</span>
         </button>
 
 

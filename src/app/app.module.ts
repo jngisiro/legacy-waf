@@ -21,6 +21,7 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { ConfirmationComponent } from './confirmation/confirmation.component';
 import { AuthInterceptor } from './authInterceptor.service';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { ServicesComponent } from './services/services.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
     CheckoutComponent,
     ConfirmationComponent,
     ProductDetailComponent,
+    ServicesComponent,
   ],
   imports: [
     BrowserModule,

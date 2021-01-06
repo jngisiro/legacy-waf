@@ -8,9 +8,11 @@ import { CartComponent } from './cart/cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { ConfirmationComponent } from './confirmation/confirmation.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { ServicesComponent } from './services/services.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
+  { path: 'services', component: ServicesComponent },
   { path: 'about', component: AboutComponent },
   { path: 'product', component: ProductsComponent },
   { path: 'product/:id', component: ProductDetailComponent },

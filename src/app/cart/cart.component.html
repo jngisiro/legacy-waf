@@ -13,7 +13,7 @@
 		<div class="card mb-3" style="max-width: 800px;" *ngFor="let product of cart">
 			<div class="row g-0">
 				<div class="col-md-5">
-					<img [src]="'assets/img/products/'+product.coverImage || 'assets/img/placeholder.png'" alt="...">
+					<img [src]="product.coverImage || 'assets/img/placeholder.png'" alt="...">
 				</div>
 				<div class="col-md-7">
 					<div class="card-body">

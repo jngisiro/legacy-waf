@@ -76,9 +76,7 @@ export class UserService {
     token: string,
     expiresIn: number
   ) {
-    const expirationDate = new Date(
-      new Date().getTime() + new Date(expiresIn).getTime()
-    );
+    const expirationDate = new Date(new Date(expiresIn).getTime());
 
     const user = new User(id, email, name, role, token, expirationDate);
     this.user.next(user);

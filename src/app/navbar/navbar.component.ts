@@ -14,6 +14,7 @@ import { ProductService } from '../product.service';
 export class NavbarComponent implements OnInit {
   angForm: FormGroup;
   angForm1: FormGroup;
+  error = false;
 
   loginbtn: boolean;
   logoutbtn: boolean;
@@ -105,6 +106,7 @@ export class NavbarComponent implements OnInit {
           // alert('User name or password is incorrect');
           this.loginError = error.error.error;
           console.log(error);
+          this.error = true;
         }
       );
   }
@@ -138,6 +140,7 @@ export class NavbarComponent implements OnInit {
 
         (error) => {
           this.isloading = false;
+          this.registrationError = error.error.error;
           console.log(error);
           // alert(`Sign Up Failed due to:  ${error}`);
           // const redirect = this.dataService.redirectUrl

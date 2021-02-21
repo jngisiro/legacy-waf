@@ -44,7 +44,13 @@ export class ProductService {
 
     const products: Product[] =
       JSON.parse(localStorage.getItem('userCart')) || [];
-    products.push(product);
+
+    const index = products.findIndex((pdt) => pdt.name === product.name);
+
+    console.log('index');
+    if (index === -1) {
+      products.push(product);
+    }
 
     localStorage.setItem('userCart', JSON.stringify(products));
     this.cart.next(products);

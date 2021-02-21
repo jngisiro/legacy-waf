@@ -1,48 +1,52 @@
 <div class="container" id="container">
   <div *ngIf="!loading && !orderSubmitted" class="row">
-    <div class="col-md-8 order-md-1">
-      <h4>Personal Details</h4>
-      <div class="row">
-        <div class="col-md-6 mb-3">
-          <input type="text" class="form-control" placeholder="First Name" aria-label="City">
+    <div class="col-md-7 order-md-1">
+      <form [formGroup]="checkoutForm" (ngSubmit)="placeOrder(checkoutForm)">
+        <h2>Complete Your Order</h2>
+        <hr>
+        <div class="form-group">
+          <label for="inputAddress">Full Name</label>
+          <input type="text" class="form-control" id="inputAddress" formControlName="name" placeholder="First and Last Name">
         </div>
-        <div class="col-md-6 mb-3">
-          <input type="text" class="form-control" placeholder="Last Name" aria-label="State">
-        </div>
-      </div>
 
-      <h4>Contact Information</h4>
-      <div class="row">
-        <div class="col-md-6 mb-3">
-          <input type="text" class="form-control" placeholder="Email Address" aria-label="City">
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputEmail4">Email</label>
+            <input type="email" class="form-control" id="inputEmail4" formControlName="email" placeholder="Email" >
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputPassword4">Phone Number</label>
+            <input type="tel" class="form-control" id="inputPassword4" formControlName="phone" placeholder="Phone Number">
+          </div>
         </div>
-        <div class="col-md-6 mb-3">
-          <input type="text" class="form-control" placeholder="Phone Number" aria-label="State">
-        </div>
-      </div>
 
-      <h4>Address Information</h4>
-      <div class="row">
-        <div class="col-md-6 mb-3">
-          <input type="text" class="form-control" placeholder="Location" aria-label="City">
+        <div class="form-group">
+          <label for="inputAddress2">District</label>
+          <input type="text" class="form-control" id="inputAddress2" formControlName="district" placeholder="District of Residence">
         </div>
-        <div class="col-md-6 mb-3">
-          <input type="text" class="form-control" placeholder="District" aria-label="State">
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputCity">Subcounty</label>
+            <input type="text" class="form-control" id="inputCity" formControlName="subcounty" placeholder="Subcounty">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputCity">Parish</label>
+            <input type="text" class="form-control" id="parish" formControlName="parish" placeholder="Parish">
+          </div>
         </div>
-      </div>
-
-      <hr>
-	<div class="d-grid gap-2">
-		<button class="btn btn-primary" type="button" (click)="placeOrder()">Submit Order</button>
-	</div>
+        <br>
+        <button [disabled]="checkoutForm.invalid || !cart || cart.length === 0" type="submit" class="btn btn-primary">Submit My Order</button>
+      </form>
     </div>
-
+    <div class="col-md-1 order-md-2 mb-4"></div>
     <div class="col-md-4 order-md-2 mb-4">
       <h4>Your Items</h4>
       <ul class="list-group">
         <li *ngFor="let product of cart" class="list-group-item d-flex justify-content-between align-items-center">
-          {{ product.name }}
+          <i class="fa fa-plus inc-dec" (click)="increment(product)"></i>
+          {{ product.name }} ({{ product.qty }})
           <span class="badge bg-primary rounded-pill">{{product.price | currency: 'UGX '}}</span>
+          <i class="fa fa-minus inc-dec" (click)="decrement(product)"></i>
         </li>
       </ul>
       <hr>
@@ -56,8 +60,8 @@
 
   <div *ngIf="orderSubmitted && !loading" class="alert alert-success" role="alert">
     <h4 class="alert-heading">Congratulations</h4>
-    <p>Your order has been successfully submitted at Safe Water Uganda. An agent will reachout to you as soon as your order is ready for delivery</p>
+    <p style="font-size: 16;">Your order has been successfully submitted at Safe Water Uganda. An agent will reachout to you as soon as your order is ready for delivery</p>
     <hr>
-    <p class="mb-0">In the meantime you can browse some of our other <a routerLink="/product"><b>Products</b></a> in stock.</p>
+    <p class="mb-0" style="font-size: 16;">In the meantime you can browse some of our other <a routerLink="/product"><b>Products</b></a> in stock.</p>
   </div>
 </div>

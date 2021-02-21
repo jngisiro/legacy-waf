@@ -3,4 +3,5 @@ export interface Order {
   user: string;
   products: string[];
   paymentMethod: string;
+  userInfo;
 }

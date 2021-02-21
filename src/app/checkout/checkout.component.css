@@ -12,3 +12,12 @@ div.alert.alert-success {
   margin-top: 100px;
   margin-bottom: 150px;
 }
+
+.inc-dec {
+  cursor: pointer;
+  transition: 0.2s ease-in;
+}
+
+.inc-dec:hover {
+  color: red;
+}

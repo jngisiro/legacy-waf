@@ -1,0 +1,15 @@
+If the user isn’t logged in, they should fill in their National ID name,
+contact and current address (District, Subcounty, Parish)
+
+
+When logged-in, they should be prompted to proceed with their log-in credentials or to edit
+
+The user should first select the quantity and the system computes the total cost before the
+Order Now can be activated
+
+An email (and if possible Whatsapp) should be sent to the contact of that company
+(e.g. to Spouts if order placed on Purifaaya)
+
+
+A pop-up should notify the user and an email into their inbox that Their order has been received by XXX,
+they will reach out shortly

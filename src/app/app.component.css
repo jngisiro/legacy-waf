@@ -113,6 +113,10 @@ footer p {
   /* text-shadow: 0 0 1px #000000; */
 }
 
+.text-size {
+  font-size: 18px;
+}
+
 footer a:hover {
   color: #eee;
 }

@@ -1,4 +1,5 @@
 @import "bootstrap/dist/css/bootstrap.min.css";
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;700&display=swap");
 
 /* You can add global styles to this file, and also import other style files */
 /* W3.CSS 4.15 December 2020 by Jan Egil and Borge Refsnes */
@@ -9,14 +10,17 @@ html {
 *:before,
 *:after {
   box-sizing: inherit;
+  font-family: "Raleway", sans-serif;
 }
 /* Extract from normalize.css by Nicolas Gallagher and Jonathan Neal git.io/normalize */
 html {
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
+  font-family: "Raleway", sans-serif;
 }
 body {
   margin-left: 0.1px;
+  font-family: "Raleway", sans-serif;
 }
 article,
 aside,
@@ -1621,4 +1625,15 @@ a {
 .w3-border-pale-blue,
 .w3-hover-border-pale-blue:hover {
   border-color: #e7ffff !important;
+}
+
+#intro p {
+  padding: 20px 0;
+  font-size: 20px;
+  line-height: 36px;
+}
+
+.text-size {
+  font-size: 18px;
+  line-height: 30px;
 }

@@ -60,7 +60,9 @@
 
 #content img {
   max-width: 100%;
-  height: auto;
+  height: 300px;
+  object-fit: cover;
+  object-position: top;
 }
 #accordion-alt3 .panel-heading h4 {
   font-size: 13px;
@@ -169,4 +171,27 @@ div.fnt a {
   margin-bottom: 20px;
   color: #eee;
   padding: 20px;
+}
+
+.about p,
+.about ol li {
+  font-size: 18px;
+  line-height: 30px;
+  color: #000;
+}
+
+.team h3 {
+  font-weight: bold;
+  font-size: 36px;
+  text-align: center;
+  padding: 5px;
+  background-color: #28a745;
+  color: #fff;
+  margin-top: 60px;
+}
+
+.team .row {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: row;
 }

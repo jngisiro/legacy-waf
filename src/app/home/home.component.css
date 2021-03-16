@@ -192,13 +192,18 @@ ul.portfolio-categ li a:active {
   font-size: 18px;
 }
 
+h1.bold {
+  font-size: 45px;
+  font-weight: 600;
+}
+
 .bold {
-  font-weight: bolder;
+  font-weight: 600;
 }
 
 .text-size {
-  font-size: 16px;
-  line-height: 25px;
+  font-size: 18px;
+  line-height: 30px;
 }
 
 .urban .btn {

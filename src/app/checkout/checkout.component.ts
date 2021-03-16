@@ -73,8 +73,22 @@ export class CheckoutComponent implements OnInit {
     this.loading = true;
     const products = this.cart.map((product) => product.id);
 
-    let order: Order = {
-      user: this.user.id,
+    const {
+      name,
+      email,
+      phone,
+      district,
+      subcounty,
+      parish } = this.checkoutForm.value;
+
+    let order = {
+      name,
+      email,
+      phone,
+      district,
+      subcounty,
+      parish,
+
       products: [...products],
       orderDate: new Date(),
       paymentMethod: 'Cash on Delivery',

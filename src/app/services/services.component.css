@@ -11,7 +11,7 @@ img {
 }
 
 p {
-  font-size: 16px;
+  font-size: 18px;
 }
 
 .info {
@@ -37,4 +37,14 @@ p {
 .tips div .wrap {
   padding: 20px 10px;
   margin-bottom: 40px;
+}
+
+h2 {
+  font-weight: 500;
+  font-size: 36px;
+  text-align: center;
+  padding: 5px;
+  background-color: #28a745;
+  color: #fff;
+  margin-top: 60px;
 }

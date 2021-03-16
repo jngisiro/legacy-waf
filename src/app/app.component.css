@@ -286,3 +286,9 @@ ul.social-network li {
 
 @media screen and (max-width: 575px) {
 }
+
+.footer-info {
+  text-align: center;
+  margin: 20px;
+  font-size: 20px;
+}

@@ -212,3 +212,19 @@ h1.bold {
   margin-top: 40px;
   padding: 10px 40px;
 }
+
+.features {
+  margin: 40px 0;
+}
+
+.features h2,
+.partnerships h2 {
+  background-color: #28a745;
+  color: #fff;
+  text-align: center;
+  margin: 20px 0;
+}
+
+.features ul li {
+  font-size: 20px;
+}

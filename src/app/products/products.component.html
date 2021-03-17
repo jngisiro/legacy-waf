@@ -1,35 +1,56 @@
 <section id="inner-headline">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-12">
-				<h2 class="pageTitle">Check Out Awesome Deals On Our Products</h2>
-			</div>
-		</div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <h2 class="pageTitle">Check Out Awesome Deals On Our Products</h2>
+      </div>
     </div>
+  </div>
 </section>
 
 <app-loading *ngIf="loading" [message]="'Loading products...'"></app-loading>
 
 <div class="container">
-	<div *ngIf="!loading"></div>
-	<div class="catalogue" class="row row-cols-1 row-cols-md-3 g-4 gap-2">
-		<div *ngFor="let product of products" class="col">
-			<div class="card">
-				<img [src]="product.coverImage || 'assets/img/placeholder.png'" class="card-img-top" alt="...">
-				<div class="card-body">
-					<h5 class="card-title">{{ product.name }} | <span>{{product.price | currency: 'UGX: '}}</span></h5>
-					<span class="badge bg-success" style="color: #fff">{{ product.category | uppercase}}</span>
-					<p class="card-text">{{ product.description | summarize}}</p>
-				</div>
-				<div class="card-body">
-					<button (click)="onDetails(product)" type="button" class="btn btn-outline-primary btn-md mr-1 mb-2 waves-effect waves-light" [attr.aria-expanded]="!isCollapsed"
-				  aria-controls="collapseExample">
-				  Details
-				</button>
-			  <button (click)="addToCart(product)" type="button" class="btn btn-success btn-md mr-1 mb-2 waves-effect waves-light"><i class="fa fa-shopping-cart pr-2" style="margin-right: 10px"></i>Add to cart</button>
-
-				</div>
-			</div>
-		</div>
-</div>
+  <div *ngIf="!loading"></div>
+  <div class="catalogue" class="row row-cols-1 row-cols-md-3 g-4 gap-2">
+    <div *ngFor="let product of products" class="col">
+      <div class="card">
+        <img
+          [src]="product.coverImage || 'assets/img/placeholder.png'"
+          class="card-img-top"
+          alt="..."
+        />
+        <div class="card-body">
+          <h5 class="card-title">
+            {{ product.name }} |
+            <span>{{ product.price | currency: "UGX: " }}</span>
+          </h5>
+          <!-- <span class="badge bg-success" style="color: #fff">{{ product.category | uppercase}}</span> -->
+          <p class="card-text">{{ product.description | summarize }}</p>
+        </div>
+        <div class="card-body">
+          <button
+            (click)="onDetails(product)"
+            type="button"
+            class="btn btn-outline-primary btn-md mr-1 mb-2 waves-effect waves-light"
+            [attr.aria-expanded]="!isCollapsed"
+            aria-controls="collapseExample"
+          >
+            Details
+          </button>
+          <button
+            (click)="addToCart(product)"
+            type="button"
+            class="btn btn-success btn-md mr-1 mb-2 waves-effect waves-light"
+          >
+            <i
+              class="material-icons"
+              style="font-size: 16px; margin-right: 10px"
+              >add_shopping_cart</i
+            >Add to cart
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

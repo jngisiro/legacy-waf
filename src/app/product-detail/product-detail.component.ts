@@ -11,11 +11,13 @@ import { ProductService } from '../product.service';
 export class ProductDetailComponent implements OnInit {
   product: Product;
   loading = false;
+  cart = [];
+
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.loading = true;
@@ -31,10 +33,26 @@ export class ProductDetailComponent implements OnInit {
         }
       );
     });
+
+    this.productService.cart.subscribe((cart) => {
+      if (cart) {
+        this.cart = cart;
+      } else {
+        cart = [];
+      }
+    });
   }
 
   onProceed() {
     this.productService.addToCart(this.product);
     this.router.navigate(['/checkout']);
+  }
+
+  addToCart(product: Product) {
+    this.productService.addToCart(product);
+  }
+
+  removeFromCart(product: Product) {
+    this.productService.removeFromCard(product);
   }
 }

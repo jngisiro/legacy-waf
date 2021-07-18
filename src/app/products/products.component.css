@@ -67,12 +67,12 @@
 }
 
 .card img {
-  height: 250px;
+  height: 450px;
   width: 100%;
   object-fit: cover;
 }
 
 .card-title span {
-  font-size: 15px;
+  font-size: 17px;
   font-weight: bold;
 }

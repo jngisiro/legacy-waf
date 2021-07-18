@@ -1,0 +1,50 @@
+.bg-info {
+  margin-top: -20px;
+  padding: 20px 0;
+  color: #eee;
+}
+
+img {
+  height: 250px;
+  width: 100%;
+  object-fit: cover;
+}
+
+p {
+  font-size: 18px;
+}
+
+.info {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+}
+
+.tips div p {
+  font-size: 15px;
+}
+
+.tips div i {
+  color: #17a2b8;
+  font-size: 50px;
+}
+
+.tips div h2 {
+  font-weight: 300;
+  font-size: 24px;
+}
+
+.tips div .wrap {
+  padding: 20px 10px;
+  margin-bottom: 40px;
+}
+
+h2 {
+  font-weight: 500;
+  font-size: 36px;
+  text-align: center;
+  padding: 5px;
+  background-color: #28a745;
+  color: #fff;
+  margin-top: 60px;
+}

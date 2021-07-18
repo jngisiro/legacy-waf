@@ -1,28 +1,152 @@
-
-<div class="container">
+<div class="containa">
   <app-loading *ngIf="loading" [message]="'Loading Product'"></app-loading>
-  
+
   <div *ngIf="!loading && product">
     <!-- <img [src]="'assets/img/products/' + product.coverImage" class="img-fluid" [alt]="product.name">
     <h2>{{ product.name }}</h2>
     <hr /> -->
     <div class="row">
-      <div class="col-sm-6">
+      <div class="col-sm-4">
+        <h3>Order Your {{ product.name }} Now</h3>
         <figure class="figure">
-          <img [src]="'assets/img/products/' + product.coverImage" class="img-fluid" [alt]="product.name">
-          <figcaption class="figure-caption text-end">{{ product.name }}</figcaption>
+          <img
+            [src]="product.coverImage"
+            class="img-fluid"
+            [alt]="product.name"
+          />
+          <figcaption class="figure-caption text-end">
+            {{ product.name }}
+          </figcaption>
         </figure>
+
+        <br />
+        <h3>
+          Price:
+          <span style="font-weight: 600">
+            {{ product.price | currency: "ugx: " }}</span
+          >
+        </h3>
       </div>
-      <div class="col-sm-6">
-        <h2>{{ product.name }}</h2>
-        <hr>
+      <div class="col-sm-5">
+        <h2>Product Description</h2>
+        <hr />
         <p>{{ product.description }}</p>
-        <p></p>
-        <div class="alert alert-info" role="alert">
-          {{ product.price| currency: 'UGX '  }}
+
+        <!-- PURIFAYA USAGE -->
+        <div *ngIf="product.name === 'Purifaaya.'">
+          <h2>Efficient use and maintenance</h2>
+          <hr />
+          <p>Every two weeks the Purifaaya should be cleaned as follows:</p>
+          <ul>
+            <li>
+              Take a clean cloth and wipe the inside of the clay to clear out
+              any dirt- do NOT use soap
+            </li>
+
+            <li>
+              Take the clay portion out of the plastic, and wash the plastic
+              bucket, tap, and cover with water AND soap (just like a normal
+              dish)
+            </li>
+
+            <p>
+              In addition to regular cleaning, water should be poured into the
+              filter for continuous filtration and to ensure that there will
+              always be enough safe water in the bottom of the bucket.
+            </p>
+          </ul>
         </div>
-        
-        <button class="btn btn-primary" type="button" (click)="onProceed()">Proceed to Buy</button>
+
+        <!-- BIOSAND USAGE -->
+        <div *ngIf="product.name === 'Biosand Water Filter'">
+          <h2>Efficient use and maintenance</h2>
+          <hr />
+          <ul>
+            <li>Clean the filter body, diffuser plate and lid regularly</li>
+            <li>
+              Flow rate should be about ½ liter per minute. In case the flow
+              rate is very slow, carry out the “swirl and dump” exercise to
+              reduce the amount of silt on top of the sand
+            </li>
+            <li>Remove the lid and diffuser plate</li>
+            <li>
+              Stir the uppermost ½ inch of sand. Do not mix the top of the sand
+              deeper into the filter
+            </li>
+            <li>Discard the turbid water but not remove the sand</li>
+          </ul>
+        </div>
+
+        <!-- SOLAR SACK USAGE -->
+        <div *ngIf="product.name === 'Solar Sack'">
+          <h2>Efficient use and maintenance</h2>
+          <hr />
+          <ul>
+            <li>
+              Use only biologically contaminated water, at recommended turbidity
+            </li>
+            <li>
+              Water should be consumed within three days of the SolarSack
+              process
+            </li>
+            <li>
+              SolarSack should be regularly rinsed to prevent a buildup of soil
+              and there sediments
+            </li>
+            <li>Do not repair</li>
+            <li>Does not work in cloudy or rainy weather</li>
+            <li>Take care with sharp objects</li>
+          </ul>
+        </div>
+        <hr />
+        <h4 class="text-center">
+          Order for this set of {{ product.name }} at Safe Water
+        </h4>
+      </div>
+      <div class="col-sm-3">
+        <div class="sidebar">
+          <h4>Product Specifications</h4>
+
+          <div *ngIf="product.name === 'Solar Sack'">
+            <p><b>Capacity:</b> 4 Liters</p>
+            <p><b>Size:</b> 370mm x 500mm</p>
+            <p><b>Filtration:</b> No filtration</p>
+            <p><b>Duration per cycle:</b> 4 hours</p>
+            <p>
+              <b>Life span:</b> Reused for app. 500 cycles when correctly used
+              (2000 L)
+            </p>
+            <p><b>Water:</b> Suitable for water with < 30 NTU of turbidity</p>
+          </div>
+
+          <div *ngIf="product.name === 'Biosand Water Filter'">
+            <p><b>Capacity:</b> 100 liter</p>
+            <p><b>Filtration rate:</b> 30 L/hr</p>
+            <p><b>Life span:</b> 8 years.</p>
+            <p><b>Water:</b> Water from all sources</p>
+          </div>
+
+          <div *ngIf="product.name === 'Purifaaya.'">
+            <p><b>Capacity:</b> 30 liter</p>
+            <p><b>Filtration rate:</b> 30 liter</p>
+            <p><b>Warranty:</b> 3 months</p>
+            <p>
+              <b>Life span:</b> 2-3 years. After three years, it remains safe
+              but filtration becomes slower
+            </p>
+            <p><b>Water:</b> Water from all sources</p>
+          </div>
+        </div>
+
+        <div class="cart-button" (click)="addToCart(product)">
+          <span>Add to Cart</span>
+          <i class="material-icons">add_shopping_cart</i>
+        </div>
+
+        <br />
+        <h4 class="selected">
+          Selected Items: <span>{{ cart.length }}</span>
+        </h4>
       </div>
     </div>
   </div>
